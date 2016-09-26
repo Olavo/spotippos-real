@@ -11,7 +11,6 @@ public class Ponto {
 	private int y;
 
 	public Ponto() {
-		// TODO Auto-generated constructor stub
 	}
 
 	public Ponto(int x, int y) {

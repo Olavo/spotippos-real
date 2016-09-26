@@ -19,7 +19,6 @@ public class ImovelController {
 	@Autowired
 	private Imoveis imoveis;
 
-	private static final String template = "Hello, %s!";
 
 	@RequestMapping(method = RequestMethod.GET)
 	public @ResponseBody String sayHello(@RequestParam(value = "name", required = false, defaultValue = "Stranger") String name) {

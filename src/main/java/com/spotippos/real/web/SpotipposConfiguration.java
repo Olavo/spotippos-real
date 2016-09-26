@@ -17,6 +17,7 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.spotippos.real.dominio.model.Boundary;
 import com.spotippos.real.dominio.model.Imoveis;
+import com.spotippos.real.dominio.model.Province;
 
 @EnableAutoConfiguration
 @ComponentScan(basePackages = { "com.spotippos.real.*" })
@@ -45,13 +46,14 @@ public class SpotipposConfiguration {
 
 	}
 
+	@SuppressWarnings("unchecked")
 	@Bean(name = "provinces")
-	public HashMap<String, Boundary> getArquivoProvinces() throws IOException {
+	public HashMap<Province, Boundary> getArquivoProvinces() throws IOException {
 		resource = new ClassPathResource(nomeArquivoProvinces);
 		File jsonFile = resource.getFile();
 		ObjectMapper jsonMapper = new ObjectMapper();
 
-		HashMap<String, Boundary> provinces =jsonMapper.readValue(jsonFile, HashMap.class);
+		HashMap<Province, Boundary> provinces =jsonMapper.readValue(jsonFile, HashMap.class);
 		
 		return provinces;
 

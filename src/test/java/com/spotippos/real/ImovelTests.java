@@ -19,6 +19,7 @@ import com.spotippos.real.web.SpotipposConfiguration;
 import com.spotippos.real.web.imovel.RequestCriaImovel;
 import com.spotippos.real.web.imovel.ResponseCriaImovel;
 
+@SuppressWarnings("deprecation")
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = SpotipposConfiguration.class, webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @TestPropertySource(properties = { "management.port=0" })
@@ -30,12 +31,10 @@ public class ImovelTests {
 	@Value("${local.management.port}")
 	private int mgt;
 
-	@SuppressWarnings("deprecation")
 	private TestRestTemplate testRestTemplate = new TestRestTemplate(null, null, null);
 
 	@Test
 	public void shouldReturn200WhenSendingRequestToController() throws Exception {
-		@SuppressWarnings("rawtypes")
 		ResponseEntity<String> entity = this.testRestTemplate.getForEntity("http://localhost:" + this.port + "/properties", String.class);
 
 		then(entity.getStatusCode()).isEqualTo(HttpStatus.OK);
