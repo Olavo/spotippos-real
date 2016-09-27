@@ -15,7 +15,6 @@ import org.springframework.core.io.Resource;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.spotippos.real.dominio.model.Boundary;
 import com.spotippos.real.dominio.model.Imoveis;
 import com.spotippos.real.dominio.model.Province;
 
@@ -45,16 +44,15 @@ public class SpotipposConfiguration {
 		});
 
 	}
-
-	@SuppressWarnings("unchecked")
+	
 	@Bean(name = "provinces")
-	public HashMap<Province, Boundary> getArquivoProvinces() throws IOException {
+	public HashMap<String, Province> getArquivoProvinces() throws IOException {
 		resource = new ClassPathResource(nomeArquivoProvinces);
 		File jsonFile = resource.getFile();
 		ObjectMapper jsonMapper = new ObjectMapper();
 
-		HashMap<Province, Boundary> provinces =jsonMapper.readValue(jsonFile, HashMap.class);
-		
+		HashMap<String, Province> provinces =jsonMapper.readValue(jsonFile,new TypeReference<HashMap<String, Province>>() {
+		});
 		return provinces;
 
 	}

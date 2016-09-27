@@ -9,7 +9,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Imovel {
-	
+
 	@JsonProperty
 	private Integer id;
 	@JsonProperty
@@ -28,10 +28,12 @@ public class Imovel {
 	private int baths;
 	@JsonProperty
 	private int squareMeters;
-	
+	@JsonEnumDefaultValue
+	private Collection<String> provinces = new ArrayList<String>();
+
 	public Imovel() {
 	}
-	
+
 	public Imovel(String title, Double price, String description, int lat, int longi, int beds, int baths, int squareMeters) {
 		super();
 		this.title = title;
@@ -44,19 +46,48 @@ public class Imovel {
 		this.squareMeters = squareMeters;
 	}
 
-	@JsonEnumDefaultValue
-	private Collection<Province> provinces = new ArrayList<Province>();
-
 	public Integer getId() {
 		return this.id;
 	}
 
-	public Collection<Province> getProvinces() {
+	public Collection<String> getProvinces() {
 		return provinces;
 	}
 
 	public void setId(Integer id) {
 		this.id = id;
 	}
-		
+
+	public int getLat() {
+		return lat;
+	}
+
+	public int getLongi() {
+		return longi;
+	}
+
+	public String getTitle() {
+		return title;
+	}
+
+	public Double getPrice() {
+		return price;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public int getBeds() {
+		return beds;
+	}
+
+	public int getBaths() {
+		return baths;
+	}
+
+	public int getSquareMeters() {
+		return squareMeters;
+	}
+
 }
