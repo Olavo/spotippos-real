@@ -11,6 +11,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.core.io.ClassPathResource;
+import org.springframework.core.io.FileSystemResource;
 import org.springframework.core.io.Resource;
 
 import com.fasterxml.jackson.core.type.TypeReference;
@@ -23,10 +24,10 @@ import com.spotippos.real.dominio.model.Province;
 @SpringBootApplication
 public class SpotipposConfiguration {
 
-	@Value("${pasta.configuracao.json.imoveis}")
+	@Value("${folder.configuration.json.properties}")
 	private String propertiesFileName;
 
-	@Value("${pasta.configuracao.json.provinces}")
+	@Value("${folder.configuration.json.provinces}")
 	private String provincesFileName;
 
 	private Resource resource;
@@ -37,7 +38,7 @@ public class SpotipposConfiguration {
 
 	@Bean(name = "properties")
 	public Properties getPropertiesFile() throws IOException {
-		resource = new ClassPathResource(propertiesFileName);
+		resource = new FileSystemResource(propertiesFileName);
 		File jsonFile = resource.getFile();
 		ObjectMapper jsonMapper = new ObjectMapper();
 		return jsonMapper.readValue(jsonFile, new TypeReference<Properties>() {
@@ -47,7 +48,7 @@ public class SpotipposConfiguration {
 	
 	@Bean(name = "provinces")
 	public HashMap<String, Province> getProvincesFile() throws IOException {
-		resource = new ClassPathResource(provincesFileName);
+		resource = new FileSystemResource(provincesFileName);
 		File jsonFile = resource.getFile();
 		ObjectMapper jsonMapper = new ObjectMapper();
 		HashMap<String, Province> provinces =jsonMapper.readValue(jsonFile,new TypeReference<HashMap<String, Province>>() {
