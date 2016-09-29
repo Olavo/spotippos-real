@@ -6,25 +6,24 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Boundary {
 	@JsonProperty
-	private Ponto upperLeft;
+	private Point upperLeft;
 	@JsonProperty
-	private Ponto bottomRight;
+	private Point bottomRight;
 	
 	public Boundary() {
-		// TODO Auto-generated constructor stub
 	}
 
-	public Boundary(Ponto upperLeft, Ponto bottomRight) {
+	public Boundary(Point upperLeft, Point bottomRight) {
 		this.upperLeft = upperLeft;
 		this.bottomRight = bottomRight;
 
 	}
 
-	public Ponto getUpperLeft() {
+	public Point getUpperLeft() {
 		return upperLeft;
 	}
 
-	public Ponto getBottomRight() {
+	public Point getBottomRight() {
 		return bottomRight;
 	}
 

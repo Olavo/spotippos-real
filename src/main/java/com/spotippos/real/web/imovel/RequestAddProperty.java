@@ -6,11 +6,10 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class RequestCriaImovel {
-	public RequestCriaImovel() {
-		// TODO Auto-generated constructor stub
+public class RequestAddProperty {
+	public RequestAddProperty() {
 	}
-	public RequestCriaImovel(int x, int y, String title, Double price, String description, int beds, int baths, int squareMeters) {
+	public RequestAddProperty(int x, int y, String title, Double price, String description, int beds, int baths, int squareMeters) {
 		this.x = x;
 		this.y=y;
 		this.title=title;
@@ -28,10 +27,10 @@ public class RequestCriaImovel {
 	@JsonProperty
 	private String description;
 	@JsonProperty
-	@Range(max=1400, min=0, message= "você não pertence a spotippos.")
+	@Range(max=1400, min=0, message= "you don\'t belong to spotippos.")
 	private int x;
 	@JsonProperty
-	@Range(max=1000, min=0, message= "você não pertence a spotippos.")
+	@Range(max=1000, min=0, message= "you don\'t belong to spotippos.")
 	private int y;
 	@JsonProperty
 	@Range(max=5, min=1)

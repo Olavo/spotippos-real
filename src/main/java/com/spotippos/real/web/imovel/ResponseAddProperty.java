@@ -5,15 +5,14 @@ import java.util.Collection;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.spotippos.real.dominio.model.Imovel;
+import com.spotippos.real.dominio.model.Property;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class ResponseCriaImovel{
+public class ResponseAddProperty{
 
-	public ResponseCriaImovel() {
-		// TODO Auto-generated constructor stub
+	public ResponseAddProperty() {
 	}
-	public ResponseCriaImovel(Imovel imovel) {
+	public ResponseAddProperty(Property imovel) {
 		this.id = imovel.getId();
 		this.provinces = imovel.getProvinces();
 	}

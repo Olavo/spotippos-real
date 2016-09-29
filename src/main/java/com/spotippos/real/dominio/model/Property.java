@@ -4,11 +4,13 @@ import java.util.ArrayList;
 import java.util.Collection;
 
 import com.fasterxml.jackson.annotation.JsonEnumDefaultValue;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonProperty.Access;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class Imovel {
+public class Property {
 
 	@JsonProperty
 	private Integer id;
@@ -31,10 +33,11 @@ public class Imovel {
 	@JsonEnumDefaultValue
 	private Collection<String> provinces = new ArrayList<String>();
 
-	public Imovel() {
+	public Property() {
 	}
 
-	public Imovel(String title, Double price, String description, int lat, int longi, int beds, int baths, int squareMeters) {
+	public Property(String title, Double price, String description, int lat, int longi, int beds, int baths,
+			int squareMeters) {
 		super();
 		this.title = title;
 		this.price = price;
@@ -88,6 +91,11 @@ public class Imovel {
 
 	public int getSquareMeters() {
 		return squareMeters;
+	}
+
+	@JsonIgnore
+	public Point getPoint() {
+		return new Point(this.longi, this.lat);
 	}
 
 }

@@ -3,11 +3,10 @@ package com.spotippos.real.web.imovel;
 import java.util.ArrayList;
 import java.util.Collection;
 
-import com.fasterxml.jackson.annotation.JsonEnumDefaultValue;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.spotippos.real.dominio.model.Imovel;
+import com.spotippos.real.dominio.model.Property;
 
-public class ResponseGetImovel {
+public class ResponseGetProperty {
 
 	@JsonProperty
 	private Integer id;
@@ -30,7 +29,10 @@ public class ResponseGetImovel {
 	@JsonProperty
 	private int squareMeters;
 
-	public ResponseGetImovel(Imovel imovel) {
+	public ResponseGetProperty() {
+	}
+
+	public ResponseGetProperty(Property imovel) {
 
 		this.id = imovel.getId();
 		this.title = imovel.getTitle();

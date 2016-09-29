@@ -15,7 +15,7 @@ import org.springframework.core.io.Resource;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.spotippos.real.dominio.model.Imoveis;
+import com.spotippos.real.dominio.model.Properties;
 import com.spotippos.real.dominio.model.Province;
 
 @EnableAutoConfiguration
@@ -24,10 +24,10 @@ import com.spotippos.real.dominio.model.Province;
 public class SpotipposConfiguration {
 
 	@Value("${pasta.configuracao.json.imoveis}")
-	private String nomeArquivoImoveis;
+	private String propertiesFileName;
 
 	@Value("${pasta.configuracao.json.provinces}")
-	private String nomeArquivoProvinces;
+	private String provincesFileName;
 
 	private Resource resource;
 
@@ -35,24 +35,30 @@ public class SpotipposConfiguration {
 		SpringApplication.run(SpotipposConfiguration.class, args);
 	}
 
-	@Bean(name = "imoveis")
-	public Imoveis getArquivoImoveis() throws IOException {
-		resource = new ClassPathResource(nomeArquivoImoveis);
+	@Bean(name = "properties")
+	public Properties getPropertiesFile() throws IOException {
+		resource = new ClassPathResource(propertiesFileName);
 		File jsonFile = resource.getFile();
 		ObjectMapper jsonMapper = new ObjectMapper();
-		return jsonMapper.readValue(jsonFile, new TypeReference<Imoveis>() {
+		return jsonMapper.readValue(jsonFile, new TypeReference<Properties>() {
 		});
 
 	}
 	
 	@Bean(name = "provinces")
-	public HashMap<String, Province> getArquivoProvinces() throws IOException {
-		resource = new ClassPathResource(nomeArquivoProvinces);
+	public HashMap<String, Province> getProvincesFile() throws IOException {
+		resource = new ClassPathResource(provincesFileName);
 		File jsonFile = resource.getFile();
 		ObjectMapper jsonMapper = new ObjectMapper();
-
 		HashMap<String, Province> provinces =jsonMapper.readValue(jsonFile,new TypeReference<HashMap<String, Province>>() {
 		});
+		
+		provinces.forEach((String, Province) -> {
+			
+			Province.setProvinceNome(String);
+			
+		});
+		
 		return provinces;
 
 	}
